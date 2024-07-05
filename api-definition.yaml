@@ -1,0 +1,108 @@
+openapi: 3.1.0
+x-stoplight:
+  id: obhabgpwu0u2f
+info:
+  title: Pooling API
+  version: "1.0"
+  summary: ""
+servers:
+  - url: "http://localhost:3000"
+paths:
+  /scanLocations:
+    get:
+      summary: Get all scan locations
+      tags: []
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ScanLocation"
+        "401":
+          description: Unauthorized
+      operationId: get-scanLocations
+      x-stoplight:
+        id: dh9lrpiczztgi
+      description: "This endpoint retrieves the scan locations that are registered. \r\nYou may pass additional filters for status and type."
+      parameters:
+        - schema: {}
+          in: query
+          name: filter
+          description: filter for status or type of scan location
+components:
+  schemas:
+    ScanLocation:
+      title: Scan location
+      x-stoplight:
+        id: kisvh3hl2zxij
+      type: object
+      description: This object represents the location and status of a member of the pooling system that is able to scan container ids.
+      required:
+        - id
+        - locationType
+        - status
+        - description
+        - address
+      properties:
+        id:
+          type: integer
+          x-stoplight:
+            id: hfarsj3oipqy5
+          description: Unique identifier of the scan location
+        locationType:
+          x-stoplight:
+            id: vtnjcyu9nndh6
+          description: "The type of location, for example a drop off point which receives boxes or a cleaning point that isn't publicy accessible."
+          enum:
+            - dropOffPoint
+            - cleaningStation
+        status:
+          x-stoplight:
+            id: 05lchu9n2cg12
+          enum:
+            - active
+            - inactive
+          description: The current status of the scan location. Locations that are offboarded or currently being onboarded are inactive.
+        description:
+          type: string
+          x-stoplight:
+            id: kiwh9uj0qlecx
+          description: "A description of the scan location. For drop off points, the description should contain the opening hours. This can be empty for cleaning stations."
+        address:
+          $ref: "#/components/schemas/Address"
+          x-stoplight:
+            id: fvk40d2m5sh0p
+          description: Address of the location
+    Address:
+      type: object
+      title: Address
+      x-stoplight:
+        id: rdg44sn0pdddo
+      description: A shipping or billing address
+      properties:
+        name:
+          type: string
+          description: The customers full name or business name.
+        addressLine1:
+          type: string
+          description: "Address line 1 (e.g., street, PO Box, or company name)."
+        addressLine2:
+          type: string
+          description: "Address line 2 (e.g., apartment, suite, unit, or building)."
+        postalCode:
+          type: string
+          description: ZIP or postal code.
+        city:
+          type: string
+          description: "City, district, suburb, town, or village."
+        country:
+          type: string
+          description: Two-letter country code (ISO 3166-1 alpha-2).
+      required:
+        - name
+        - addressLine1
+        - addressLine2
+        - postalCode
+        - city
+        - country

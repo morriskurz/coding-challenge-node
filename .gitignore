@@ -1,0 +1,12 @@
+/node_modules/
+/dist/
+/jest-coverage/
+/local.settings.json
+/.env
+*.parameters.json
+*.zip
+/deploy/main.json
+/.portman/.env-portman
+collection.postman.json
+/tmp
+/__azurite/

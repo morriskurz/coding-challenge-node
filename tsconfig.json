@@ -1,0 +1,49 @@
+{
+    "extends": "./node_modules/gts/tsconfig-google.json",
+    "target": "es2020",
+    "compilerOptions": {
+        "module": "NodeNext",
+        "moduleResolution": "NodeNext",
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "esModuleInterop": true,
+        // @TODO: enable this but fix first https://github.com/kulshekhar/ts-jest/issues/4081
+        "verbatimModuleSyntax": false,
+        "outDir": "dist",
+        "types": [
+            "jest",
+            "node"
+        ],
+        "typeRoots": [
+            "node_modules/@types"
+        ],
+        "lib": [
+            "DOM",
+            "ES2020"
+        ],
+        "strict": true,
+        "plugins": [
+            {
+                "transform": "ts-transformer-keys/transformer"
+            },
+            {
+                "transform": "ts-auto-mock/transformer",
+                "cacheBetweenTests": false
+            }
+        ]
+    },
+    "include": [
+        "./mocks/",
+        "./src/",
+        "./jest.setup.ts",
+        "./jest.config.ts",
+        "migrate.ts",
+        "./**/*.ts",
+    ],
+    "exclude": [
+        "node_modules",
+        "dist",
+        "jest.config.ts",
+        "jest.setup.ts"
+    ]
+}
