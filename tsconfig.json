@@ -1,40 +1,27 @@
 {
-    "extends": "./node_modules/gts/tsconfig-google.json",
-    "target": "es2020",
-    "compilerOptions": {
-        "module": "NodeNext",
-        "moduleResolution": "NodeNext",
-        "experimentalDecorators": true,
-        "emitDecoratorMetadata": true,
-        "esModuleInterop": true,
-        // @TODO: enable this but fix first https://github.com/kulshekhar/ts-jest/issues/4081
-        "verbatimModuleSyntax": false,
-        "outDir": "dist",
-        "types": [
-            "jest",
-            "node"
-        ],
-        "typeRoots": [
-            "node_modules/@types"
-        ],
-        "lib": [
-            "DOM",
-            "ES2020"
-        ],
-        "strict": true,
-    },
-    "include": [
-        "./mocks/",
-        "./src/",
-        "./jest.setup.ts",
-        "./jest.config.ts",
-        "migrate.ts",
-        "./**/*.ts",
-    ],
-    "exclude": [
-        "node_modules",
-        "dist",
-        "jest.config.ts",
-        "jest.setup.ts"
-    ]
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "esModuleInterop": true,
+    // @TODO: enable this but fix first https://github.com/kulshekhar/ts-jest/issues/4081
+    "verbatimModuleSyntax": false,
+    "outDir": "dist",
+    "types": ["jest", "node"],
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["DOM", "ES2020"],
+    "strict": true
+  },
+  "include": [
+    "./mocks/",
+    "./src/",
+    "./jest.setup.ts",
+    "jest.config.js",
+    "migrate.ts",
+    "./**/*.ts",
+    "mjs-resolver.ts"
+  ],
+  "exclude": ["node_modules", "dist", "jest.config.js", "jest.setup.ts"]
 }
